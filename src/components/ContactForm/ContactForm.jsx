@@ -5,14 +5,14 @@ import {useAddContactMutation} from '../../redux/contactsApi'
 const ContactForm = () => {
   const [addContact] = useAddContactMutation();
 const [name, setName] = useState('')
-const [number, setNumber] = useState('')
+const [ phone, setPhone] = useState('')
   // Генерация уникальных идентификаторов для полей формы
  let nameInputId = nanoid();
-  let numberInputId = nanoid();
+  let phoneInputId = nanoid();
 
   const handleAddContact = async (event) => {
-    if({name, number}) {
-      await addContact({name, number}).unwrap();
+    if({name,  phone}) {
+      await addContact({name, phone}).unwrap();
       reset();
     }
   }
@@ -35,8 +35,8 @@ const [number, setNumber] = useState('')
       setName(value);
       return
     }
-    case "number":{
-      setNumber(value);
+    case "phone":{
+      setPhone(value);
       return
     }
    default: return;
@@ -45,7 +45,7 @@ const [number, setNumber] = useState('')
 
   // Сброс состояния формы
  const  reset = () => {
-    setNumber('')
+   setPhone('')
     setName('')
   };
 
@@ -65,12 +65,12 @@ const [number, setNumber] = useState('')
           />
         </Label>
 
-        <Label htmlFor={numberInputId}>
-          Number
+        <Label htmlFor={phoneInputId}>
+          Phone
           <Input
             type="tel"
-            name="number"
-            value={number}
+            name="phone"
+            value={phone}
             onChange={handleChange}
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"

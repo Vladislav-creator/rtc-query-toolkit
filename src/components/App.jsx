@@ -39,8 +39,9 @@ function App() {
       </div>
       <ul>
         {data.map(item => (
-          <li key={item.id} onClick={() => handleDeleteContact(item.id)}>
+          <li key={item.id}>
             {item.name} {item.phone}
+            <button onClick={() => handleDeleteContact(item.id)}>Delete</button>
           </li>
         ))}
       </ul>
