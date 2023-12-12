@@ -1,21 +1,21 @@
-import { useState } from 'react';
-import { useGetContactsQuery, useAddContactMutation, useDeleteContactMutation } from '../redux';
-import ContactForm from './ContactForm/ContactForm'
+// import { useState } from 'react';
+import { useGetContactsQuery, useDeleteContactMutation } from '../redux';
+ import ContactForm from './ContactForm/ContactForm'
 function App() {
   
-  const [newContact, setNewContact] = useState('');
+  // const [newContact, setNewContact] = useState('');
   const {data = [], isLoading} = useGetContactsQuery();
-  const [addContact] = useAddContactMutation();
+  // const [addContact] = useAddContactMutation();
   const [deleteContact] = useDeleteContactMutation();
-
-  const handleAddContact = async (contact) => {
-    if(contact) {
-      setNewContact(contact)
-       await addContact(newContact).unwrap();
+  
+  // const handleAddContact = async ({ name, number }) => {
+  //   if(newContact) {
+  //     console.log({ name, number });
+  //      await addContact(newContact).unwrap();
      
-       setNewContact('');
-    }
-  }
+  //      setNewContact('');
+  //   }
+  // }
 
   const handleDeleteContact = async (id) => {
     await deleteContact(id).unwrap();
@@ -25,15 +25,15 @@ function App() {
 
   return (
     <div>
-      {/* <div>
-        <input
+      <div>
+        {/* <input
           type="text"
           value={newContact}
           onChange={(e) => setNewContact(e.target.value)}
-        />
-        <button onClick={handleAddContact}>Add contact</button>
-      </div> */}
-       <ContactForm onSubmit={handleAddContact} />
+        /> */}
+        {/* <button onClick={handleAddContact}>Add contact</button> */}
+      </div>
+       <ContactForm/>
       <div>
        
       </div>

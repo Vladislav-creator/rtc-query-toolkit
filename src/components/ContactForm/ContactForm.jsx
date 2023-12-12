@@ -1,25 +1,31 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
  import { Form, Label, Button, Input } from './ContactForm.styled';
-
-const ContactForm = ({onSubmit}) => {
-
+import {useAddContactMutation} from '../../redux/contactsApi'
+const ContactForm = () => {
+  const [addContact] = useAddContactMutation();
 const [name, setName] = useState('')
 const [number, setNumber] = useState('')
   // Генерация уникальных идентификаторов для полей формы
  let nameInputId = nanoid();
   let numberInputId = nanoid();
 
+  const handleAddContact = async (event) => {
+    if({name, number}) {
+      await addContact({name, number}).unwrap();
+      reset();
+    }
+  }
   // Обработка отправки формы
-  const handleSubmit = event => {
-    event.preventDefault();
+//   const handleSubmit = event => {
+//     event.preventDefault();
+// console.log({ name, number });
+//     // Вызов функции onSubmit из родительского компонента с передачей объекта контакта
+//     // onSubmit({ name, number });
 
-    // Вызов функции onSubmit из родительского компонента с передачей объекта контакта
-    onSubmit({ name, number });
-
-    // Сброс состояния формы
-    reset();
-  };
+//     // Сброс состояния формы
+//     reset();
+//   };
 
  // Обработка изменения значений полей формы
   const handleChange = event => {
@@ -45,7 +51,7 @@ const [number, setNumber] = useState('')
 
  
     return (
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleAddContact}>
         <Label htmlFor={nameInputId}>
           Name
           <Input
