@@ -1,8 +1,9 @@
- import { useState } from 'react';
-import { useGetContactsQuery, useDeleteContactMutation, useToggleStatusMutation } from '../redux';
+//  import { useState } from 'react';
+// import { useGetContactsQuery, useDeleteContactMutation, useToggleStatusMutation } from '../redux';
+import { useGetContactsQuery, useDeleteContactMutation } from '../redux';
  import ContactForm from './ContactForm/ContactForm'
 function App() {
-  const [isFavourite, setIsFavourite] = useState(false)
+  // const [isFavourite, setIsFavourite] = useState(false)
 
   const {data = [], isLoading} = useGetContactsQuery();
   const [deleteContact] = useDeleteContactMutation();
@@ -12,9 +13,9 @@ function App() {
 
   if (isLoading) return <h1>Loading...</h1>
 
-  const handleToggle = (isFavourite) => {
-    setIsFavourite(!isFavourite)
-  }
+  // const handleToggle = (isFavourite) => {
+  //   setIsFavourite(!isFavourite)
+  // }
   return (
     <div>
       <h1>
@@ -31,7 +32,7 @@ function App() {
         type='checkbox'
         checked={item.isFavourite}
        
-         onChange={handleToggle}
+        //  onChange={handleToggle}
       />
             {item.name} {item.phone}
             <button onClick={() => handleDeleteContact(item.id)}>&#10006;</button>
