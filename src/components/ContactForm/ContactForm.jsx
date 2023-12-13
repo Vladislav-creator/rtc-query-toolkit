@@ -1,35 +1,34 @@
 import { useState } from 'react';
-import { nanoid } from 'nanoid';
  import { Form, Label, Button, Input } from './ContactForm.styled';
-import {useAddContactMutation} from '../../redux/contactsApi'
+import {useGetContactsQuery, useAddContactMutation} from '../../redux/contactsApi'
 const ContactForm = () => {
+  const {data} = useGetContactsQuery();
+ 
   const [addContact] = useAddContactMutation();
 const [name, setName] = useState('')
 const [ phone, setPhone] = useState('')
-  // Генерация уникальных идентификаторов для полей формы
- let nameInputId = nanoid();
-  let phoneInputId = nanoid();
-
+ 
   const handleAddContact = async (event) => {
+    event.preventDefault();
     if({name,  phone}) {
       await addContact({name, phone}).unwrap();
       reset();
     }
   }
-  // Обработка отправки формы
-//   const handleSubmit = event => {
-//     event.preventDefault();
-// console.log({ name, number });
-//     // Вызов функции onSubmit из родительского компонента с передачей объекта контакта
-//     // onSubmit({ name, number });
-
-//     // Сброс состояния формы
-//     reset();
-//   };
-
  // Обработка изменения значений полей формы
   const handleChange = event => {
         const { name, value } = event.target;
+
+        const isNameInContacts = data.some(
+          ({ name }) => name.toLowerCase() === value.toLowerCase()
+        );
+        const isPhoneInContacts = data.some(
+          ({ phone }) => phone.toLowerCase() === value.toLowerCase()
+        );
+        if (isNameInContacts||isPhoneInContacts) {
+          return alert(`${value} is already in contacts.`);
+        }
+
   switch(name){
     case "name":{
       setName(value);
@@ -52,7 +51,7 @@ const [ phone, setPhone] = useState('')
  
     return (
       <Form onSubmit={handleAddContact}>
-        <Label htmlFor={nameInputId}>
+        <Label>
           Name
           <Input
             type="text"
@@ -65,7 +64,7 @@ const [ phone, setPhone] = useState('')
           />
         </Label>
 
-        <Label htmlFor={phoneInputId}>
+        <Label>
           Phone
           <Input
             type="tel"

@@ -23,8 +23,26 @@ export const contactsApi = createApi({
                 method: 'DELETE',
             }),
             invalidatesTags: [{type: 'Contacts', id: 'LIST'}]
-        })
+        }),
+        toggleStatus: build.mutation({
+            query(data) {
+              const { id, ...body } = data
+              return {
+                url: `contacts/${id}`,
+                method: 'PUT',
+                body,
+              }},
+              invalidatesTags: [{type: 'Contacts', id: 'LIST'}]
+            }),
     })
 });
 
-export const {useGetContactsQuery, useAddContactMutation, useDeleteContactMutation} = contactsApi;
+export const {useGetContactsQuery, useAddContactMutation, useDeleteContactMutation, useToggleStatusMutation} = contactsApi;
+
+// toggleStatus: build.mutation({
+//     query: (id) => ({
+//         url: `contacts/${id}`,
+//         method: 'PUT',
+//     }),
+//     invalidatesTags: [{type: 'Contacts', id: 'LIST'}]
+// })

@@ -1,38 +1,25 @@
-// import { useState } from 'react';
-import { useGetContactsQuery, useDeleteContactMutation } from '../redux';
+ import { useState } from 'react';
+import { useGetContactsQuery, useDeleteContactMutation, useToggleStatusMutation } from '../redux';
  import ContactForm from './ContactForm/ContactForm'
 function App() {
-  
-  // const [newContact, setNewContact] = useState('');
-  const {data = [], isLoading} = useGetContactsQuery();
-  // const [addContact] = useAddContactMutation();
-  const [deleteContact] = useDeleteContactMutation();
-  
-  // const handleAddContact = async ({ name, number }) => {
-  //   if(newContact) {
-  //     console.log({ name, number });
-  //      await addContact(newContact).unwrap();
-     
-  //      setNewContact('');
-  //   }
-  // }
+  const [isFavourite, setIsFavourite] = useState(false)
 
+  const {data = [], isLoading} = useGetContactsQuery();
+  const [deleteContact] = useDeleteContactMutation();
   const handleDeleteContact = async (id) => {
     await deleteContact(id).unwrap();
   }
 
   if (isLoading) return <h1>Loading...</h1>
 
+  const handleToggle = (isFavourite) => {
+    setIsFavourite(!isFavourite)
+  }
   return (
     <div>
-      <div>
-        {/* <input
-          type="text"
-          value={newContact}
-          onChange={(e) => setNewContact(e.target.value)}
-        /> */}
-        {/* <button onClick={handleAddContact}>Add contact</button> */}
-      </div>
+      <h1>
+        Telephone directory
+      </h1>
        <ContactForm/>
       <div>
        
@@ -40,8 +27,14 @@ function App() {
       <ul>
         {data.map(item => (
           <li key={item.id}>
+             <input
+        type='checkbox'
+        checked={item.isFavourite}
+       
+         onChange={handleToggle}
+      />
             {item.name} {item.phone}
-            <button onClick={() => handleDeleteContact(item.id)}>Delete</button>
+            <button onClick={() => handleDeleteContact(item.id)}>&#10006;</button>
           </li>
         ))}
       </ul>
