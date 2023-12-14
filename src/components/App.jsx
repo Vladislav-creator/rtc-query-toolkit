@@ -1,15 +1,15 @@
 import ContactForm from './ContactForm/ContactForm'
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter'
+import  Section  from './Section/Section';
 function App() {
   return (
     <div>
-      <h1>
-        Telephone directory
-      </h1>
+      <Section title="Telephone directory">
        <ContactForm/>
        <Filter />
        <ContactList/>
+       </Section>
     </div>
   );
 }

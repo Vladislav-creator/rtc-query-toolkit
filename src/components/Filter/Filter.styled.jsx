@@ -7,7 +7,16 @@ export const Label = styled.label`
   font-weight: 500;
 `;
 export const Input = styled.input`
-  width: 250px;
-  padding: 5px;
-  border-radius: 5px;
+width: 400px;
+padding: 10px;
+margin: 0 auto;
+border-radius: 4px;
+border: 3px solid Lime;
+`;
+export const FilterTitle = styled.p`
+  margin-bottom: 3px;
+
+  font-size: 18px;
+  text-align: center;
+  
 `;
