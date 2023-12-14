@@ -6,7 +6,12 @@ const ContactList = () => {
     const [deleteContact] = useDeleteContactMutation();
     const [updateContact] = useToggleStatusMutation();
     const filter = useSelector(selectContactsFilter);
-    console.log(filter);
+    // console.log(filter);
+    const filteredContact = data.filter(contact => contact.name.toLowerCase()
+    .includes(filter.toLowerCase()))
+    const sortedContacts = filteredContact.slice().sort((a, b) => {
+      return b.isFavourite - a.isFavourite;
+    });
     const handleDeleteContact = async (id) => {
       await deleteContact(id).unwrap();
     }
@@ -19,7 +24,7 @@ const ContactList = () => {
     return (
       <div>
         <ul>
-          {data.map(item => (
+          {sortedContacts.map(item => (
             <li key={item.id}>
                <input
           type='checkbox'
