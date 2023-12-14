@@ -5,7 +5,7 @@ import  Section  from './Section/Section';
 function App() {
   return (
     <div>
-      <Section title="Telephone directory">
+      <Section title="Telephone directory(rtc-query-toolkit)">
        <ContactForm/>
        <Filter />
        <ContactList/>
