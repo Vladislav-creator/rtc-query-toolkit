@@ -94,6 +94,7 @@ export const Styled = styled.div`
     opacity: 0;
     cursor: pointer;
     position: absolute;
+    width:100%;
   }
   > input:checked {
     &+label::before {
