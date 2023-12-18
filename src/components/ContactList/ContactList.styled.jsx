@@ -9,7 +9,7 @@ export const ItemContact = styled.li`
  border: solid 0.5px lime;
  padding: 6px;
  border-radius: 0.4em;
- 
+ background-color: #bd71ff;
   > input {
     opacity: 0;
     cursor: pointer;
@@ -41,9 +41,7 @@ export const ItemContact = styled.li`
     width: 1em;
     border-radius: 0.15em;
     margin-right: 0.5em;
-
-
-    
+    background-color: white;
   }
   // > input:focus {
   //   &+label::before {
