@@ -33,7 +33,7 @@ const ContactList = () => {
           checked={item.isFavourite}
           onChange={e=>handleToggle({...item, isFavourite: e.target.checked})}
         />
-             <label> <SpanName>{item.name}</SpanName> <SpanPhone>{item.phone}</SpanPhone></label>
+             <label> <SpanName>{item.name}</SpanName><SpanName>{item.job}</SpanName> <SpanPhone>{item.phone}</SpanPhone></label>
               <button onClick={() => handleDeleteContact(item.id)}>&#10006;</button>
               
             </ItemContact>

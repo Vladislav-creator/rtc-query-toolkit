@@ -7,11 +7,12 @@ const ContactForm = () => {
   const [addContact] = useAddContactMutation();
 const [name, setName] = useState('')
 const [ phone, setPhone] = useState('')
- 
+const [job, setJob] = useState('')
+
   const handleAddContact = async (event) => {
     event.preventDefault();
-    if({name,  phone}) {
-      await addContact({name, phone}).unwrap();
+    if({name, job, phone}) {
+      await addContact({name, job, phone}).unwrap();
       reset();
     }
   }
@@ -34,6 +35,10 @@ const [ phone, setPhone] = useState('')
       setName(value);
       return
     }
+    case "job":{
+      setJob(value);
+      return
+    }
     case "phone":{
       setPhone(value);
       return
@@ -46,6 +51,7 @@ const [ phone, setPhone] = useState('')
  const  reset = () => {
    setPhone('')
     setName('')
+    setJob('')
   };
 
  
@@ -55,7 +61,7 @@ const [ phone, setPhone] = useState('')
           Name
           <Input
             type="text"
-            maxlength="22"
+            maxLength="22"
             name="name"
             value={name}
             onChange={handleChange}
@@ -64,12 +70,24 @@ const [ phone, setPhone] = useState('')
             required
           />
         </Label>
-
+        <Label>
+          Job
+          <Input
+            type="text"
+            maxLength="10"
+            name="job"
+            value={job}
+            onChange={handleChange}
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            required
+          />
+        </Label>
         <Label>
           Phone
           <Input
             type="tel"
-            maxlength="15"
+            maxLength="15"
             name="phone"
             value={phone}
             onChange={handleChange}
