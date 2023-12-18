@@ -6,6 +6,9 @@ export const ItemContact = styled.li`
   align-items: center;
   justify-content: space-between;
   -webkit-box-align: center;
+ border: solid 0.5px lime;
+ padding: 6px;
+ border-radius: 0.4em;
  
   > input {
     opacity: 0;
@@ -65,8 +68,11 @@ export const ItemContact = styled.li`
   
 `;
 
-export const Span = styled.div`
-width: 170px;
+export const SpanName = styled.div`
+width: 200px;
+`;
+export const SpanPhone = styled.div`
+width: 160px;
 `;
 
 export const ListContacts = styled.ul`

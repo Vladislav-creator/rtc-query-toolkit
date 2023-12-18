@@ -55,6 +55,7 @@ const [ phone, setPhone] = useState('')
           Name
           <Input
             type="text"
+            maxlength="22"
             name="name"
             value={name}
             onChange={handleChange}
@@ -68,6 +69,7 @@ const [ phone, setPhone] = useState('')
           Phone
           <Input
             type="tel"
+            maxlength="15"
             name="phone"
             value={phone}
             onChange={handleChange}
