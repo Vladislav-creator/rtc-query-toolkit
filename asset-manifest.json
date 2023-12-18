@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/rtc-query-toolkit/static/css/main.a03acf59.css",
-    "main.js": "/rtc-query-toolkit/static/js/main.92729d3d.js",
+    "main.js": "/rtc-query-toolkit/static/js/main.b444d797.js",
     "index.html": "/rtc-query-toolkit/index.html",
     "main.a03acf59.css.map": "/rtc-query-toolkit/static/css/main.a03acf59.css.map",
-    "main.92729d3d.js.map": "/rtc-query-toolkit/static/js/main.92729d3d.js.map"
+    "main.b444d797.js.map": "/rtc-query-toolkit/static/js/main.b444d797.js.map"
   },
   "entrypoints": [
     "static/css/main.a03acf59.css",
-    "static/js/main.92729d3d.js"
+    "static/js/main.b444d797.js"
   ]
 }
