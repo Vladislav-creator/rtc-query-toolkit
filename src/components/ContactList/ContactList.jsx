@@ -1,6 +1,7 @@
 import { useGetContactsQuery, useDeleteContactMutation, useToggleStatusMutation } from '../../redux/contactsApi';
 import { selectContactsFilter } from '../../redux/selectors';
 import {  useSelector } from 'react-redux';
+ import { Styled } from './ContactList.styled';
 const ContactList = () => {
     const {data = [], isLoading} = useGetContactsQuery();
     const [deleteContact] = useDeleteContactMutation();
@@ -26,13 +27,15 @@ const ContactList = () => {
         <ul>
           {sortedContacts.map(item => (
             <li key={item.id}>
+              <Styled>
                <input
           type='checkbox'
           checked={item.isFavourite}
           onChange={e=>handleToggle({...item, isFavourite: e.target.checked})}
         />
-              {item.name} {item.phone}
+             <label> {item.name} {item.phone}</label>
               <button onClick={() => handleDeleteContact(item.id)}>&#10006;</button>
+              </Styled>
             </li>
           ))}
         </ul>
